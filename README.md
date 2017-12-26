@@ -1,2 +1,35 @@
-# Pagination_node
-# Pagination_node
+# Pagination With ejs, node and mongoDB 
+
+This code will give you idea to create pagination using ejs and express.js it has sorting and searching with page button previous, next , last and first.
+
+### Prerequisites
+
+Below noted things you need to install the software
+
+```
+- Node.js
+- NPM
+- MongoDB (In your Local System.)
+```
+
+
+### Installing
+
+Clone or download this repository
+
+```
+npm install
+```
+
+### Run
+
+```
+nodemon server.js
+```
+
+Code is Running on
+
+http://localhost:3000/
+
+
+### Thanks :zap:
