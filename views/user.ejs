@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+    </title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body style="text-align: center;">
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div style="text-align: center;">
+                <div class="col-lg-12">
+                    
+                        <div class="caption" >
+                            <h1>Pagination</h1>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 30px; ">
+          <div style="text-align: center;">
+
+            <div class="caption" >
+              <form action="/products" method="POST">
+                <input type="hidden" name="page" id="page" value="1">
+                <div class="form-group col-lg-12">
+                  <div class="col-lg-2" style="float: left;">
+                    <label for="sel1">Order By : </label>
+                  </div>
+                  <div class="col-lg-2" style="float: left;">
+                    <select class="form-control" name="select">
+                     <% if(sort == "email") { %>
+                     <option value="id">ID</option>
+                     <option value="name">Name</option>
+                     <option value="email" selected>Email</option>
+                     <% } else if(sort == "name") { %>
+                     <option value="id">ID</option>
+                     <option value="name" selected>Name</option>
+                     <option value="email">Email</option>
+                     <% } else{ %>
+                     <option value="id" selected>ID</option>
+                     <option value="name">Name</option>
+                     <option value="email">Email</option>
+                     <% } %>
+                    </select>
+                  </div>
+                <!-- </div>
+                  <div class="form-group col-lg-12"> -->
+                  <div class="col-lg-2" style="float: left;">
+                    <label for="sel1">Search By : </label>
+                  </div>
+                  <div class="col-lg-2" style="float: left;">
+                    <select class="form-control" name="search">
+                     <% if(search == "email") { %>
+                     <option value="id">ID</option>
+                     <option value="name">Name</option>
+                     <option value="phone">Phone</option>
+                     <option value="city">City</option>
+                     <option value="email" selected>Email</option>
+                     <% } else if(search == "name") { %>
+                     <option value="id">ID</option>
+                     <option value="name" selected>Name</option>
+                     <option value="phone">Phone</option>
+                     <option value="city">City</option>
+                     <option value="email">Email</option>
+                     <% } else if(search == "city") { %>
+                     <option value="id">ID</option>
+                     <option value="name">Name</option>
+                     <option value="phone">Phone</option>
+                     <option value="city" selected>City</option>
+                     <option value="email">Email</option>
+                     <% } else if(search == "phone") { %>
+                     <option value="id">ID</option>
+                     <option value="name">Name</option>
+                     <option value="phone" selected>Phone</option>
+                     <option value="city">City</option>
+                     <option value="email">Email</option>
+                     <% } else { %>
+                     <option value="id" selected>ID</option>
+                     <option value="name">Name</option>
+                     <option value="phone">Phone</option>
+                     <option value="city" >City</option>
+                     <option value="email">Email</option>
+                     <% } %>
+                   </select>
+                  </div>
+                  <div class="col-lg-2" style="float: left;">
+                    <input class="form-control" type="text" name="search_field">
+                  </div>
+                  <div class="col-lg-1" style="float: right;">
+                   <input type="submit" id="submit">
+                 </div>
+               </div>
+             </form>
+           </div>
+         </div>
+       </div>
+       <!-- <H2><%=pages%></H2> -->
+     <div class="row">
+
+        <div class="col-lg-12" >
+            <div class="thumbnail">
+                <div class="caption" >
+                    <table class="table table-hover table-dark">
+                        <thead >
+                            <tr class="bg-primary" >
+                              <td scope="col">ID
+                              </td>
+                              <td scope="col">UserName
+                              </td>
+                              <td scope="col">Email
+                              </td>
+                              <td scope="col">Phone
+                              </td>
+                              <td scope="col">City
+                              </td>
+                              <td scope="col">Date
+                              </td>
+                          </tr>
+                      </thead>
+                      <% for (var i = 0; i < user.length; i++) { %>
+                      <tbody>
+                        <tr>    
+                            <td><%= user[i].id %>
+                            </td>
+                            <td><%= user[i].name %>
+                            </td>
+                            <td><%= user[i].email %>
+                            </td>
+                            <td><%= user[i].phone %>
+                            </td>
+                            <td><%= user[i].city %>
+                            </td>
+                            <td>
+                              <%= moment(user[i].date).format("DD MMM 'YY") %></br><%= moment(user[i].date).format("hh:mm a") %>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<% if (pages > 0) { %>
+<ul class="pagination text-center">
+    <% if (current == 1) { %>
+    <li class="disabled"><a>First</a></li>
+    <% } else { %>
+    <li ><a href="#" id="First" onclick="First(1)">First</a></li>
+    <% } %>
+
+    <% if (Number(current) - 1 > 0) { %>
+    <li><a href="#" onclick="First(<%= Number(current) - 1 %>)">Prev</a></li>
+    <% } else { %>
+    <li class="disabled"><a>Prev</a></li>
+    <% } %>
+
+    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+
+    <% if (i !== 1) { %>
+    <li class="disabled"><a>...</a></li>
+    <% } %>
+
+    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+
+    <% if (i == current) { %>
+    <li class="active"><a><%= i %></a></li>
+    <% } else { %>
+    <li id="pages"><a href="#" onclick="First(<%= i %>)" ><%= i %></a></li>
+    <% } %>
+
+    <% if (i == Number(current) + 4 && i < pages) { %>
+    <li class="disabled"><a>...</a></li>
+    <% } %>
+    <% } %>
+
+    <% if (Number(current) + 1 <= pages) { %>
+    <li><a href="#" onclick="First(<%= Number(current) + 1 %>)">Next</a></li>
+    <% } else { %>
+    <li class="disabled"><a>Next</a></li>
+    <% } %>
+
+    <% if (current == pages) { %>
+    <li class="disabled"><a>Last</a></li>
+    <% } else { %>
+    <li><a href="#" onclick="First(<%=pages%>)">Last</a></li>
+    <% } %>
+</ul>
+<% } %>
+
+
+<div class="row">
+    <div style="text-align: center;">
+        <div class="col-lg-12">
+            <a href="/" class="btn btn-primary btn-lg">Add Users</a>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+ 
+   function First(a){
+    //alert(a);
+    document.getElementById("page").value = a;
+    var button = document.getElementById('submit');
+    button.click();
+
+   }
+
+</script>
+</html>
