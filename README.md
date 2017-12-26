@@ -1,6 +1,7 @@
 # Pagination With ejs, node and mongoDB 
 
 This code will give you idea to create pagination using ejs and express.js it has sorting and searching with page button previous, next , last and first.
+You can add data in first page just click Add button in page that will add dummy data to your local mongoDB database that will display on pagination page .
 
 ### Prerequisites
 
