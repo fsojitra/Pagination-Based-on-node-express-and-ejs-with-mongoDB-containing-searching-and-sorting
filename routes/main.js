@@ -15,8 +15,6 @@ router.get('/', function(req, res, next) {
 })
 
 router.post('/added', function(req, res, next) {
-    console.log("aaaaaa");
-    console.log(req.body);
     User.findOne({},function(err,data){
 
         if (data) {
@@ -35,9 +33,8 @@ router.post('/added', function(req, res, next) {
 
     user.save(function(err,succ) {
         if (err) {
-            console.log(err);
+            // console.log(err);
         }else{
-            console.log(succ);
             res.redirect('/')
         }
     })
@@ -45,9 +42,6 @@ router.post('/added', function(req, res, next) {
 })
 
 router.post('/products', function(req, res, next) {
-
-    console.log(req.body);
-
     if(req.body.select!='undefined'){
         var sort=req.body.select;
     }
@@ -55,12 +49,7 @@ router.post('/products', function(req, res, next) {
     var perPage = 9
     var page = req.body.page || 1
 
-    //var search = req.body.search;
-    console.log(req.body.search);
-    console.log(req.body.search_field);
-
     if (req.body.search!=undefined && req.body.search_field!=undefined && req.body.search!='' && req.body.search_field!='') {
-        console.log('if');
         var search = req.body.search;
         var search_field = req.body.search_field;
         var query = { 'search' : search_field };
@@ -76,10 +65,8 @@ router.post('/products', function(req, res, next) {
         }else{
             var query = { id : search_field };
         }
-        console.log(query);
     }else{
         var query = { 'name': { $ne: null } };
-        console.log(query)
     }
     
     User.find(query).skip((perPage * page) - perPage).limit(perPage).sort(sort)
