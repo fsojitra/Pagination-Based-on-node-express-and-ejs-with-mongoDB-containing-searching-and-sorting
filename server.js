@@ -8,7 +8,7 @@ var app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-mongoose.connect('mongodb://localhost:27017/pagination', { useMongoClient: true })
+mongoose.connect('mongodb://localhost:27017/pagination')
 
 var mainRoutes = require('./routes/main')
 app.use(mainRoutes)
