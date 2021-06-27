@@ -7,7 +7,7 @@
     "start": "node server.js"
   },
   "author": "foram",
-  "license": "ISC",
+  "license": "MIT License",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^3.0.1",

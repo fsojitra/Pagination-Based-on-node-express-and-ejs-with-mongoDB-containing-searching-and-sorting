@@ -1,20 +1,20 @@
-var express = require('express')
-var ejs = require('ejs')
-var mongoose = require('mongoose')
-var bodyParser = require('body-parser')
+let express = require('express')
+let ejs = require('ejs')
+let mongoose = require('mongoose')
+let bodyParser = require('body-parser')
 const bluebird = require('bluebird')
 mongoose.Promise = bluebird;
-var app = express()
+let app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 mongoose.connect('mongodb://localhost:27017/pagination')
 
-var mainRoutes = require('./routes/main')
+let mainRoutes = require('./routes/main')
 app.use(mainRoutes)
 
 app.set('view engine', 'ejs')
 
-app.listen(3000, function() {
+app.listen(3001, function() {
     console.log('Runing on port ' + 3000)
 })
