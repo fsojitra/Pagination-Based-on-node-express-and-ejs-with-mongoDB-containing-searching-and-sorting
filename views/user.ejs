@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>
+    Pagination
   </title>
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
@@ -26,11 +27,9 @@
           <form action="/products" method="POST">
             <input type="hidden" name="page" id="page" value="1">
             <div class="form-group col-lg-12">
-              <div class="col-lg-2" style="float: left;">
-                <label for="sel1">Order By : </label>
-              </div>
-              <div class="col-lg-2" style="float: left;">
-                <select class="form-control" name="select">
+              <div class="col-lg-3" style="display: flex;">
+                <label for="sel1" style="margin-top: 5px; margin-right: 5px;">Order By : </label>
+                <select class="form-control" name="select" style="width: 100px !important;">
                   <% if(sort=="email" ) { %>
                     <option value="id">ID</option>
                     <option value="name">Name</option>
@@ -46,12 +45,62 @@
                         <% } %>
                 </select>
               </div>
-              <!-- </div>
-                  <div class="form-group col-lg-12"> -->
-              <div class="col-lg-2" style="float: left;">
-                <label for="sel1">Search By : </label>
+             <!--  <div class="col-lg-2" style="float: left;">
+                <select class="form-control" name="select">
+                  <% if(sort=="email" ) { %>
+                    <option value="id">ID</option>
+                    <option value="name">Name</option>
+                    <option value="email" selected>Email</option>
+                    <% } else if(sort=="name" ) { %>
+                      <option value="id">ID</option>
+                      <option value="name" selected>Name</option>
+                      <option value="email">Email</option>
+                      <% } else{ %>
+                        <option value="id" selected>ID</option>
+                        <option value="name">Name</option>
+                        <option value="email">Email</option>
+                        <% } %>
+                </select>
+              </div> -->
+
+              <div class="col-lg-5" style="display: flex;">
+                <label for="sel1" style="margin-top: 5px; margin-right: 5px;">Search By : </label>
+                <select class="form-control" name="search" style="width: 100px !important;">
+                  <% if(search=="email" ) { %>
+                    <option value="id">ID</option>
+                    <option value="name">Name</option>
+                    <option value="phone">Phone</option>
+                    <option value="city">City</option>
+                    <option value="email" selected>Email</option>
+                    <% } else if(search=="name" ) { %>
+                      <option value="id">ID</option>
+                      <option value="name" selected>Name</option>
+                      <option value="phone">Phone</option>
+                      <option value="city">City</option>
+                      <option value="email">Email</option>
+                      <% } else if(search=="city" ) { %>
+                        <option value="id">ID</option>
+                        <option value="name">Name</option>
+                        <option value="phone">Phone</option>
+                        <option value="city" selected>City</option>
+                        <option value="email">Email</option>
+                        <% } else if(search=="phone" ) { %>
+                          <option value="id">ID</option>
+                          <option value="name">Name</option>
+                          <option value="phone" selected>Phone</option>
+                          <option value="city">City</option>
+                          <option value="email">Email</option>
+                          <% } else { %>
+                            <option value="id" selected>ID</option>
+                            <option value="name">Name</option>
+                            <option value="phone">Phone</option>
+                            <option value="city">City</option>
+                            <option value="email">Email</option>
+                            <% } %>
+                </select>&nbsp;&nbsp;
+                <input class="form-control" type="text" name="search_field" style="width: 250px !important;">
               </div>
-              <div class="col-lg-2" style="float: left;">
+              <!-- <div class="col-lg-2" style="float: left;">
                 <select class="form-control" name="search">
                   <% if(search=="email" ) { %>
                     <option value="id">ID</option>
@@ -84,10 +133,14 @@
                             <option value="city">City</option>
                             <option value="email">Email</option>
                             <% } %>
-                </select>
-              </div>
-              <div class="col-lg-2" style="float: left;">
+                </select> 
+              </div>-->
+              <!-- <div class="col-lg-2" style="float: left;">
                 <input class="form-control" type="text" name="search_field">
+              </div> -->
+              <div class="col-lg-3" style="display: flex;">
+                <label for="sel1" style="margin-top: 5px; margin-right: 5px;">Page Size : </label>
+                <input class="form-control" type="text" value="<%=perPage%>" name="perPage" style="width: 100px !important;">
               </div>
               <div class="col-lg-1" style="float: right;">
                 <input type="submit" id="submit">

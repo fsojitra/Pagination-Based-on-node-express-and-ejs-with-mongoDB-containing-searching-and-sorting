@@ -48,8 +48,8 @@ router.post('/products', (req, res, next) => {
         sort = req.body.select;
     }
 
-    let perPage = 9
-    let page = req.body.page || 1
+    let perPage = Number(req.body.perPage) || 10;
+    let page = Number(req.body.page) || 1;
 
     if (req.body.search != undefined && req.body.search_field != undefined && req.body.search != '' && req.body.search_field != '') {
         search = req.body.search;
@@ -79,6 +79,7 @@ router.post('/products', (req, res, next) => {
                     user: user,
                     current: page,
                     pages: Math.ceil(count / perPage),
+                    perPage: perPage,
                     sort: sort,
                     search: search,
                     moment: moment
