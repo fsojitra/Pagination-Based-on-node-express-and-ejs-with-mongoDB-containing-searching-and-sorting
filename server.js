@@ -15,6 +15,6 @@ app.use(mainRoutes)
 
 app.set('view engine', 'ejs')
 
-app.listen(3001, function() {
+app.listen(3000, function() {
     console.log('Runing on port ' + 3000)
 })
