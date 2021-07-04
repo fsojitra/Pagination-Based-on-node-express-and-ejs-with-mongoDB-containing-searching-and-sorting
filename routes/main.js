@@ -31,9 +31,9 @@ router.post('/added', (req, res, next) => {
             city: req.body.city
         })
 
-        user.save(function (err, succ) {
+        user.save((err, success) => {
             if (err) {
-                // console.log(err);
+                console.log(err);
             } else {
                 res.redirect('/')
             }
@@ -73,7 +73,7 @@ router.post('/products', (req, res, next) => {
 
     User.find(query).skip((perPage * page) - perPage).limit(perPage).sort(sort)
         .exec((err, user) => {
-            User.count(query).exec(function (err, count) {
+            User.count(query).exec((err, count) => {
                 if (err) return next(err)
                 res.render('user', {
                     user: user,
